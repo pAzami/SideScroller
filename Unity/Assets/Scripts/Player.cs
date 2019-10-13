@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityStandardAssets.CrossPlatformInput;
 
 public class Player : MonoBehaviour
 {
@@ -11,7 +10,8 @@ public class Player : MonoBehaviour
 
     Rigidbody2D playerRigidBody;
     Animator playerAnimator;
-    Collider2D playerCollider2D;
+    CapsuleCollider2D bodyCollider;
+    BoxCollider2D feetCollider;
 
     bool isAlive = true;
 
@@ -20,7 +20,8 @@ public class Player : MonoBehaviour
     {
         playerRigidBody = GetComponent<Rigidbody2D>();
         playerAnimator = GetComponent<Animator>();
-        playerCollider2D = GetComponent<Collider2D>();
+        bodyCollider = GetComponent<CapsuleCollider2D>();
+        feetCollider = GetComponent<BoxCollider2D>();
     }
 
     // Update is called once per frame
@@ -34,13 +35,13 @@ public class Player : MonoBehaviour
 
     private void ClimbLadder()
     {
-        if (!playerCollider2D.IsTouchingLayers(LayerMask.GetMask("Ladder")))
+        if (!feetCollider.IsTouchingLayers(LayerMask.GetMask("Ladder")))
         {
             playerAnimator.SetBool("Climbing", false);
             return;
         }
 
-        float inputAxis = CrossPlatformInputManager.GetAxis("Vertical");
+        float inputAxis = Input.GetAxis("Vertical");
         Vector2 ladderVelocity = new Vector2(playerRigidBody.velocity.x, inputAxis * climbSpeed);
         playerRigidBody.velocity = ladderVelocity;
 
@@ -50,12 +51,12 @@ public class Player : MonoBehaviour
 
     private void Jump()
     {
-        if (!playerCollider2D.IsTouchingLayers(LayerMask.GetMask("Ground")))
+        if (!feetCollider.IsTouchingLayers(LayerMask.GetMask("Ground")))
         {
             return; // don't allow player to jump
         }
 
-        if (CrossPlatformInputManager.GetButtonDown("Jump"))
+        if (Input.GetButtonDown("Jump"))
         {
             Vector2 jumpVelocity = new Vector2(0f, jumpSpeed);
             playerRigidBody.velocity += jumpVelocity;
@@ -64,7 +65,7 @@ public class Player : MonoBehaviour
 
     private void Run()
     {
-        float inputAxis = CrossPlatformInputManager.GetAxis("Horizontal");
+        float inputAxis = Input.GetAxis("Horizontal");
         Vector2 moveVelocity = new Vector2(inputAxis * moveSpeed, playerRigidBody.velocity.y);
         playerRigidBody.velocity = moveVelocity;
 
