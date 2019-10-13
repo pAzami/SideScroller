@@ -28,9 +28,9 @@ public class Player : MonoBehaviour
     void Update()
     {
         Run();
-        Jump();
         FlipSprite();
         ClimbLadder();
+        Jump();
     }
 
     private void ClimbLadder()
