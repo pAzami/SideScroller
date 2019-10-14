@@ -14,6 +14,8 @@ public class Player : MonoBehaviour
     BoxCollider2D feetCollider;
 
     bool isAlive = true;
+    int playerLayerIndex = 10;
+    int enemyLayerIndex = 13;
 
     // Start is called before the first frame update
     void Start()
@@ -28,6 +30,8 @@ public class Player : MonoBehaviour
     void Update()
     {
         if (!isAlive) { return; }
+
+        Physics2D.IgnoreLayerCollision(playerLayerIndex, enemyLayerIndex, false);
 
         Run();
         FlipSprite();
@@ -44,7 +48,8 @@ public class Player : MonoBehaviour
             playerAnimator.SetTrigger("Dying");
             playerRigidBody.velocity = Vector2.zero;
             GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, 0.5f);
-            Physics2D.IgnoreLayerCollision(10, 13, true);
+            Physics2D.IgnoreLayerCollision(playerLayerIndex, enemyLayerIndex, true);
+            FindObjectOfType<GameSession>().ProcessPlayerDeath();
         }
     }
 
