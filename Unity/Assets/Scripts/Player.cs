@@ -27,10 +27,25 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (!isAlive) { return; }
+
         Run();
         FlipSprite();
         ClimbLadder();
         Jump();
+        Die();
+    }
+
+    private void Die()
+    {
+        if (bodyCollider.IsTouchingLayers(LayerMask.GetMask("Enemy")))
+        {
+            isAlive = false;
+            playerAnimator.SetTrigger("Dying");
+            playerRigidBody.velocity = Vector2.zero;
+            GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, 0.5f);
+            Physics2D.IgnoreLayerCollision(10, 13, true);
+        }
     }
 
     private void ClimbLadder()
@@ -51,10 +66,7 @@ public class Player : MonoBehaviour
 
     private void Jump()
     {
-        if (!feetCollider.IsTouchingLayers(LayerMask.GetMask("Ground")))
-        {
-            return; // don't allow player to jump
-        }
+        if (!feetCollider.IsTouchingLayers(LayerMask.GetMask("Ground"))) { return; }
 
         if (Input.GetButtonDown("Jump"))
         {
