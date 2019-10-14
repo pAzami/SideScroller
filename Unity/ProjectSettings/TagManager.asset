@@ -21,7 +21,7 @@ TagManager:
   - Decoration
   - Enemy
   - Traps
-  - 
+  - Interactables
   - 
   - 
   - 
@@ -62,4 +62,7 @@ TagManager:
     locked: 0
   - name: Foreground
     uniqueID: 1253294637
+    locked: 0
+  - name: Interactables
+    uniqueID: 1545778283
     locked: 0
