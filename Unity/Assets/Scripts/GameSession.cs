@@ -3,10 +3,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class GameSession : MonoBehaviour
 {
     [SerializeField] int playerLives = 3;
+    [SerializeField] int score = 0;
+
+    [SerializeField] Text livesText;
+    [SerializeField] Text scoreText;
 
     private void Awake()
     {
@@ -24,7 +29,8 @@ public class GameSession : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        livesText.text = playerLives.ToString();
+        scoreText.text = score.ToString();
     }
 
     public void ProcessPlayerDeath()
@@ -39,11 +45,18 @@ public class GameSession : MonoBehaviour
         }
     }
 
+    public void AddToScore(int amount)
+    {
+        score += amount;
+        scoreText.text = score.ToString();
+    }
+
     private void ReduceLives()
     {
         playerLives--;
         var curSceneIndex = SceneManager.GetActiveScene().buildIndex;
         SceneManager.LoadScene(curSceneIndex);
+        livesText.text = playerLives.ToString();
     }
 
     private void ResetSession()
