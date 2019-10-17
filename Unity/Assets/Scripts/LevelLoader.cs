@@ -5,41 +5,43 @@ using UnityEngine.SceneManagement;
 
 public class LevelLoader : MonoBehaviour
 {
-    [SerializeField] float levelLoadDelay = 2f;
-
     private int curSceneIndex;
-    private const string GAME_OVER_SCENE_IDENTIFIER = "Game Over";
+    private const int GAME_OVER_SCENE_IDENTIFIER = 5;
 
     private void Start()
     {
         curSceneIndex = SceneManager.GetActiveScene().buildIndex;
     }
 
-    public void LoadMainMenu()
+    private IEnumerator ChangeScene(int sceneBuildIndex, float sceneLoadDelay)
     {
-        SceneManager.LoadScene(0);
+        yield return new WaitForSecondsRealtime(sceneLoadDelay);
+        SceneManager.LoadScene(sceneBuildIndex);
     }
 
-    public void StartFirstLevel()
+    public void LoadMainMenu(float sceneLoadDelay = 0)
     {
-        SceneManager.LoadScene(1);
+        StartCoroutine(ChangeScene(0, sceneLoadDelay));
     }
 
-    public IEnumerator LoadNextLevel()
+    public void StartFirstLevel(float sceneLoadDelay = 0)
     {
-        yield return new WaitForSecondsRealtime(levelLoadDelay);
-
-        SceneManager.LoadScene(curSceneIndex + 1);
+        StartCoroutine(ChangeScene(1, sceneLoadDelay));
     }
 
-    public void ReloadCurrentLevel()
+    public void LoadNextLevel(float sceneLoadDelay = 0)
     {
-        SceneManager.LoadScene(curSceneIndex);
+        StartCoroutine(ChangeScene(curSceneIndex + 1, sceneLoadDelay));
     }
 
-    public void LoadGameOverMenu()
+    public void ReloadCurrentLevel(float sceneLoadDelay = 0)
     {
-        SceneManager.LoadScene(GAME_OVER_SCENE_IDENTIFIER);
+        StartCoroutine(ChangeScene(curSceneIndex, sceneLoadDelay));
+    }
+
+    public void LoadGameOverMenu(float sceneLoadDelay = 0)
+    {
+        StartCoroutine(ChangeScene(GAME_OVER_SCENE_IDENTIFIER, sceneLoadDelay));
     }
 
     public void QuitToMainMenu()
@@ -51,7 +53,6 @@ public class LevelLoader : MonoBehaviour
         }
 
         LoadMainMenu();
-
     }
 
     public void Quit()

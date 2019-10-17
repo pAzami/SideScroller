@@ -25,8 +25,21 @@ public class EnemyMovement : MonoBehaviour
         {
             rigidBody.velocity = new Vector2(moveSpeed, 0f);  // move right
         }
-        
     }
+
+    /* TO LOOK INTO
+    private void Update()
+    {
+        if (IsFacingLeft())
+        {
+            rigidBody.AddForce(new Vector2(-moveSpeed, 0f), ForceMode2D.Impulse);
+        }
+        else
+        {
+            rigidBody.AddForce(new Vector2(moveSpeed, 0f), ForceMode2D.Impulse);
+        }
+    }
+    */
 
     private void OnTriggerExit2D(Collider2D collision)
     {

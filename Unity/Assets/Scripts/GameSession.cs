@@ -8,11 +8,9 @@ public class GameSession : MonoBehaviour
 {
     [SerializeField] int playerLives = 5;
     [SerializeField] int score = 0;
-
     [SerializeField] Text livesText;
     [SerializeField] Text scoreText;
-
-    private LevelLoader levelLoader;
+    [SerializeField] float loadDelay = 2f;
 
     private void Awake()
     {
@@ -30,7 +28,6 @@ public class GameSession : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        levelLoader = FindObjectOfType<LevelLoader>();
         livesText.text = playerLives.ToString();
         scoreText.text = score.ToString();
     }
@@ -40,11 +37,11 @@ public class GameSession : MonoBehaviour
         if (playerLives > 1)
         {
             ReduceLivesAndUpdateUI();
-            levelLoader.ReloadCurrentLevel();
+            FindObjectOfType<LevelLoader>().ReloadCurrentLevel(loadDelay);
         }
         else
         {
-            levelLoader.LoadGameOverMenu();
+            FindObjectOfType<LevelLoader>().LoadGameOverMenu(loadDelay);
         }
     }
 

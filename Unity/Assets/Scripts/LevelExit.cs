@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class LevelExit : MonoBehaviour
 {
+    [SerializeField] float exitDelay = 2f;
+
     private bool levelExitTriggered = false;
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -13,7 +15,7 @@ public class LevelExit : MonoBehaviour
             levelExitTriggered = true;
             GetComponent<SpriteRenderer>().color = Color.green;
             FindObjectOfType<ScenePersist>().destroyAllCollectibles();
-            StartCoroutine(FindObjectOfType<LevelLoader>().LoadNextLevel());
+            FindObjectOfType<LevelLoader>().LoadNextLevel(exitDelay);
         }
     }
 
