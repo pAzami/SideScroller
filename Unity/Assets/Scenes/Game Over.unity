@@ -20059,7 +20059,7 @@ GameObject:
   - component: {fileID: 585907570}
   - component: {fileID: 585907569}
   m_Layer: 5
-  m_Name: Success Text
+  m_Name: Defeat Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -20097,7 +20097,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0.764151, b: 0.11581805, a: 1}
+  m_Color: {r: 0.7647059, g: 0, b: 0.37058163, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -20115,7 +20115,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Winner!
+  m_Text: You Lost
 --- !u!222 &585907570
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -20321,7 +20321,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 848881838}
-        m_MethodName: Quit
+        m_MethodName: QuitToMainMenu
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

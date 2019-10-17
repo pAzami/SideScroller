@@ -13,6 +13,8 @@ public class GameSession : MonoBehaviour
     [SerializeField] Text livesText;
     [SerializeField] Text scoreText;
 
+    private const String GAME_OVER_SCENE_IDENTIFIER = "Game Over";
+
     private void Awake()
     {
         int numGameSessions = FindObjectsOfType<GameSession>().Length;
@@ -37,31 +39,40 @@ public class GameSession : MonoBehaviour
     {
         if (playerLives > 1)
         {
-            ReduceLives();
+            ReduceLivesAndUpdateUI();
+            ReloadCurrentLevel();
         }
         else
         {
-            ResetSession();
+            LoadGameOverScene();
         }
     }
 
-    public void AddToScore(int amount)
+    public void IncreaseScoreAndUpdateUI(int amount)
     {
         score += amount;
         scoreText.text = score.ToString();
     }
 
-    private void ReduceLives()
+    private void ReduceLivesAndUpdateUI()
     {
         playerLives--;
-        var curSceneIndex = SceneManager.GetActiveScene().buildIndex;
-        SceneManager.LoadScene(curSceneIndex);
         livesText.text = playerLives.ToString();
     }
 
-    private void ResetSession()
+    private void ReloadCurrentLevel()
     {
-        SceneManager.LoadScene(0);
+        var curSceneIndex = SceneManager.GetActiveScene().buildIndex;
+        SceneManager.LoadScene(curSceneIndex);
+    }
+
+    public void ResetSession()
+    {
         Destroy(gameObject);
+    }
+
+    private void LoadGameOverScene()
+    {
+        SceneManager.LoadScene(GAME_OVER_SCENE_IDENTIFIER);
     }
 }
