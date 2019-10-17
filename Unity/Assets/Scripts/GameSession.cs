@@ -2,18 +2,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class GameSession : MonoBehaviour
 {
-    [SerializeField] int playerLives = 3;
+    [SerializeField] int playerLives = 5;
     [SerializeField] int score = 0;
 
     [SerializeField] Text livesText;
     [SerializeField] Text scoreText;
 
-    private const String GAME_OVER_SCENE_IDENTIFIER = "Game Over";
+    private LevelLoader levelLoader;
 
     private void Awake()
     {
@@ -31,6 +30,7 @@ public class GameSession : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        levelLoader = FindObjectOfType<LevelLoader>();
         livesText.text = playerLives.ToString();
         scoreText.text = score.ToString();
     }
@@ -40,11 +40,11 @@ public class GameSession : MonoBehaviour
         if (playerLives > 1)
         {
             ReduceLivesAndUpdateUI();
-            ReloadCurrentLevel();
+            levelLoader.ReloadCurrentLevel();
         }
         else
         {
-            LoadGameOverScene();
+            levelLoader.LoadGameOverMenu();
         }
     }
 
@@ -58,17 +58,6 @@ public class GameSession : MonoBehaviour
     {
         playerLives--;
         livesText.text = playerLives.ToString();
-    }
-
-    private void ReloadCurrentLevel()
-    {
-        var curSceneIndex = SceneManager.GetActiveScene().buildIndex;
-        SceneManager.LoadScene(curSceneIndex);
-    }
-
-    private void LoadGameOverScene()
-    {
-        SceneManager.LoadScene(GAME_OVER_SCENE_IDENTIFIER);
     }
 
     public void ResetSession()

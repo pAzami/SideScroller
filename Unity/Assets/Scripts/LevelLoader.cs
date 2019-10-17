@@ -7,6 +7,14 @@ public class LevelLoader : MonoBehaviour
 {
     [SerializeField] float levelLoadDelay = 2f;
 
+    private int curSceneIndex;
+    private const string GAME_OVER_SCENE_IDENTIFIER = "Game Over";
+
+    private void Start()
+    {
+        curSceneIndex = SceneManager.GetActiveScene().buildIndex;
+    }
+
     public void LoadMainMenu()
     {
         SceneManager.LoadScene(0);
@@ -21,8 +29,17 @@ public class LevelLoader : MonoBehaviour
     {
         yield return new WaitForSecondsRealtime(levelLoadDelay);
 
-        var currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
-        SceneManager.LoadScene(currentSceneIndex + 1);
+        SceneManager.LoadScene(curSceneIndex + 1);
+    }
+
+    public void ReloadCurrentLevel()
+    {
+        SceneManager.LoadScene(curSceneIndex);
+    }
+
+    public void LoadGameOverMenu()
+    {
+        SceneManager.LoadScene(GAME_OVER_SCENE_IDENTIFIER);
     }
 
     public void QuitToMainMenu()
