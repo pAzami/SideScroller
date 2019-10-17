@@ -13,7 +13,7 @@ public class LevelExit : MonoBehaviour
             levelExitTriggered = true;
             GetComponent<SpriteRenderer>().color = Color.green;
             FindObjectOfType<ScenePersist>().destroyAllCollectibles();
-            StartCoroutine(FindObjectOfType<Level>().LoadNextLevel());
+            StartCoroutine(FindObjectOfType<LevelLoader>().LoadNextLevel());
         }
     }
 

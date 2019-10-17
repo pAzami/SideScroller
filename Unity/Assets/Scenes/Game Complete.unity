@@ -19917,7 +19917,6 @@ GameObject:
   - component: {fileID: 506550664}
   - component: {fileID: 506550663}
   - component: {fileID: 506550662}
-  - component: {fileID: 506550665}
   m_Layer: 5
   m_Name: Main Menu Button
   m_TagString: Untagged
@@ -19988,7 +19987,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 506550665}
+      - m_Target: {fileID: 1236458027}
         m_MethodName: QuitToMainMenu
         m_Mode: 1
         m_Arguments:
@@ -20035,18 +20034,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 506550660}
   m_CullTransparentMesh: 0
---- !u!114 &506550665
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 506550660}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 634ce720e1635d541b9854e9df4ace08, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &585907567
 GameObject:
   m_ObjectHideFlags: 0
@@ -20237,7 +20224,6 @@ GameObject:
   - component: {fileID: 848881841}
   - component: {fileID: 848881840}
   - component: {fileID: 848881839}
-  - component: {fileID: 848881838}
   m_Layer: 5
   m_Name: Quit Button
   m_TagString: Untagged
@@ -20265,18 +20251,6 @@ RectTransform:
   m_AnchoredPosition: {x: 288, y: 327}
   m_SizeDelta: {x: -1414.8, y: -939.6}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &848881838
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 848881836}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 634ce720e1635d541b9854e9df4ace08, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &848881839
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20320,7 +20294,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 848881838}
+      - m_Target: {fileID: 1236458027}
         m_MethodName: Quit
         m_Mode: 1
         m_Arguments:
@@ -20810,7 +20784,7 @@ PrefabInstance:
     - target: {fileID: 6075465643757493488, guid: 9ce48a05e8036c84ea8482f16c688309,
         type: 3}
       propertyPath: m_Name
-      value: Level
+      value: LevelLoader
       objectReference: {fileID: 0}
     - target: {fileID: 6075465643757493494, guid: 9ce48a05e8036c84ea8482f16c688309,
         type: 3}
@@ -20869,6 +20843,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9ce48a05e8036c84ea8482f16c688309, type: 3}
+--- !u!114 &1236458027 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6075465643757493495, guid: 9ce48a05e8036c84ea8482f16c688309,
+    type: 3}
+  m_PrefabInstance: {fileID: 1236458026}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ebf009f7b215b5542a2f99456f5579db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1413204670
 GameObject:
   m_ObjectHideFlags: 0
