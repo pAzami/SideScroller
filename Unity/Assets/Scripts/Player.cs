@@ -13,9 +13,9 @@ public class Player : MonoBehaviour
     CapsuleCollider2D bodyCollider;
     BoxCollider2D feetCollider;
 
-    bool isAlive = true;
-    int playerLayerIndex = 10;
-    int enemyLayerIndex = 13;
+    private bool isAlive = true;
+    private const int playerLayerIndex = 10;
+    private const int enemyLayerIndex = 13;
 
     // Start is called before the first frame update
     void Start()
@@ -86,8 +86,15 @@ public class Player : MonoBehaviour
         Vector2 moveVelocity = new Vector2(inputAxis * moveSpeed, playerRigidBody.velocity.y);
         playerRigidBody.velocity = moveVelocity;
 
-        bool hasHorizontalMovement = Mathf.Abs(playerRigidBody.velocity.x) > Mathf.Epsilon;
-        playerAnimator.SetBool("Running", hasHorizontalMovement);
+        if (!feetCollider.IsTouchingLayers(LayerMask.GetMask("Ground")))
+        {
+            playerAnimator.SetBool("Running", false);
+        }
+        else
+        {
+            bool hasHorizontalMovement = Mathf.Abs(playerRigidBody.velocity.x) > Mathf.Epsilon;
+            playerAnimator.SetBool("Running", hasHorizontalMovement);
+        }
     }
 
     private void FlipSprite()

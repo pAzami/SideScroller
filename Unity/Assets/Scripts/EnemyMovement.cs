@@ -27,20 +27,6 @@ public class EnemyMovement : MonoBehaviour
         }
     }
 
-    /* TO LOOK INTO
-    private void Update()
-    {
-        if (IsFacingLeft())
-        {
-            rigidBody.AddForce(new Vector2(-moveSpeed, 0f), ForceMode2D.Impulse);
-        }
-        else
-        {
-            rigidBody.AddForce(new Vector2(moveSpeed, 0f), ForceMode2D.Impulse);
-        }
-    }
-    */
-
     private void OnTriggerExit2D(Collider2D collision)
     {
         transform.localScale = new Vector2(+(Mathf.Sign(rigidBody.velocity.x)), 1f);
