@@ -24,14 +24,14 @@ public class Player : MonoBehaviour
         playerAnimator = GetComponent<Animator>();
         bodyCollider = GetComponent<CapsuleCollider2D>();
         feetCollider = GetComponent<BoxCollider2D>();
+
+        Physics2D.IgnoreLayerCollision(playerLayerIndex, enemyLayerIndex, false);
     }
 
     // Update is called once per frame
     void Update()
     {
         if (!isAlive) { return; }
-
-        Physics2D.IgnoreLayerCollision(playerLayerIndex, enemyLayerIndex, false);
 
         Run();
         FlipSprite();

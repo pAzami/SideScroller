@@ -66,13 +66,13 @@ public class GameSession : MonoBehaviour
         SceneManager.LoadScene(curSceneIndex);
     }
 
-    public void ResetSession()
-    {
-        Destroy(gameObject);
-    }
-
     private void LoadGameOverScene()
     {
         SceneManager.LoadScene(GAME_OVER_SCENE_IDENTIFIER);
+    }
+
+    public void ResetSession()
+    {
+        Destroy(gameObject);
     }
 }
