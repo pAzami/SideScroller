@@ -13,9 +13,25 @@ public class Player : MonoBehaviour
     CapsuleCollider2D bodyCollider;
     BoxCollider2D feetCollider;
 
+    // Layers
+    private const string GROUND_LAYER = "Ground";
+    private const string LADDER_LAYER = "Ladder";
+    private const string PLAYER_LAYER = "Player";
+    private const string ENEMY_LAYER = "Enemy";
+    private const string TRAPS_LAYER = "Traps";
+
+    // Animations
+    private const string RUNNING_ANIM = "Running";
+    private const string CLIMBING_ANIM = "Climbing";
+    private const string DYING_ANIM = "Dying";
+    private const string JUMP_ANIM = "Jump";
+
+    // Player Input
+    private const string VERTICAL_INPUT = "Vertical";
+    private const string HORIZONTAL_INPUT = "Horizontal";
+    private const string JUMP_INPUT = "Jump";
+
     private bool isAlive = true;
-    private const int playerLayerIndex = 10;
-    private const int enemyLayerIndex = 13;
 
     // Start is called before the first frame update
     void Start()
@@ -25,7 +41,7 @@ public class Player : MonoBehaviour
         bodyCollider = GetComponent<CapsuleCollider2D>();
         feetCollider = GetComponent<BoxCollider2D>();
 
-        Physics2D.IgnoreLayerCollision(playerLayerIndex, enemyLayerIndex, false);
+        Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer(PLAYER_LAYER), LayerMask.NameToLayer(ENEMY_LAYER), false);
     }
 
     // Update is called once per frame
@@ -42,40 +58,40 @@ public class Player : MonoBehaviour
 
     private void Die()
     {
-        if (bodyCollider.IsTouchingLayers(LayerMask.GetMask("Enemy", "Traps")))
+        if (bodyCollider.IsTouchingLayers(LayerMask.GetMask(ENEMY_LAYER, TRAPS_LAYER)))
         {
             isAlive = false;
-            playerAnimator.SetTrigger("Dying");
+            playerAnimator.SetTrigger(DYING_ANIM);
             playerRigidBody.velocity = Vector2.zero;
             GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, 0.5f);
-            Physics2D.IgnoreLayerCollision(playerLayerIndex, enemyLayerIndex, true);
+            Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer(PLAYER_LAYER), LayerMask.NameToLayer(ENEMY_LAYER), true);
             FindObjectOfType<GameSession>().ProcessPlayerDeath();
         }
     }
 
     private void ClimbLadder()
     {
-        if (!feetCollider.IsTouchingLayers(LayerMask.GetMask("Ladder")))
+        if (!feetCollider.IsTouchingLayers(LayerMask.GetMask(LADDER_LAYER)))
         {
-            playerAnimator.SetBool("Climbing", false);
+            playerAnimator.SetBool(CLIMBING_ANIM, false);
             return;
         }
 
-        float inputAxis = Input.GetAxis("Vertical");
+        float inputAxis = Input.GetAxis(VERTICAL_INPUT);
         Vector2 ladderVelocity = new Vector2(playerRigidBody.velocity.x, inputAxis * climbSpeed);
         playerRigidBody.velocity = ladderVelocity;
 
         bool hasVerticalSpeed = Mathf.Abs(playerRigidBody.velocity.y) > Mathf.Epsilon;
-        playerAnimator.SetBool("Climbing", hasVerticalSpeed);
+        playerAnimator.SetBool(CLIMBING_ANIM, hasVerticalSpeed);
     }
 
     private void Jump()
     {
-        if (!feetCollider.IsTouchingLayers(LayerMask.GetMask("Ground"))) { return; }
+        if (!feetCollider.IsTouchingLayers(LayerMask.GetMask(GROUND_LAYER))) { return; }
 
-        if (Input.GetButtonDown("Jump"))
+        if (Input.GetButtonDown(JUMP_INPUT))
         {
-            playerAnimator.SetTrigger("Jump");
+            playerAnimator.SetTrigger(JUMP_ANIM);
             Vector2 jumpVelocity = new Vector2(0f, jumpSpeed);
             playerRigidBody.velocity += jumpVelocity;
         }
@@ -83,18 +99,18 @@ public class Player : MonoBehaviour
 
     private void Run()
     {
-        float inputAxis = Input.GetAxis("Horizontal");
+        float inputAxis = Input.GetAxis(HORIZONTAL_INPUT);
         Vector2 moveVelocity = new Vector2(inputAxis * moveSpeed, playerRigidBody.velocity.y);
         playerRigidBody.velocity = moveVelocity;
 
-        if (!feetCollider.IsTouchingLayers(LayerMask.GetMask("Ground")))
+        if (!feetCollider.IsTouchingLayers(LayerMask.GetMask(GROUND_LAYER)))
         {
-            playerAnimator.SetBool("Running", false);
+            playerAnimator.SetBool(RUNNING_ANIM, false);
         }
         else
         {
             bool hasHorizontalMovement = Mathf.Abs(playerRigidBody.velocity.x) > Mathf.Epsilon;
-            playerAnimator.SetBool("Running", hasHorizontalMovement);
+            playerAnimator.SetBool(RUNNING_ANIM, hasHorizontalMovement);
         }
     }
 
