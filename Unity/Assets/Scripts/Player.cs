@@ -15,6 +15,7 @@ public class Player : MonoBehaviour
 
     // Layers
     private const string GROUND_LAYER = "Ground";
+    private const string MOVING_PLATFORM_LAYER = "MovingPlatform";
     private const string LADDER_LAYER = "Ladder";
     private const string PLAYER_LAYER = "Player";
     private const string ENEMY_LAYER = "Enemy";
@@ -87,7 +88,7 @@ public class Player : MonoBehaviour
 
     private void Jump()
     {
-        if (!feetCollider.IsTouchingLayers(LayerMask.GetMask(GROUND_LAYER))) { return; }
+        if (!feetCollider.IsTouchingLayers(LayerMask.GetMask(GROUND_LAYER, MOVING_PLATFORM_LAYER))) { return; }
 
         if (Input.GetButtonDown(JUMP_INPUT))
         {
@@ -103,7 +104,7 @@ public class Player : MonoBehaviour
         Vector2 moveVelocity = new Vector2(inputAxis * moveSpeed, playerRigidBody.velocity.y);
         playerRigidBody.velocity = moveVelocity;
 
-        if (!feetCollider.IsTouchingLayers(LayerMask.GetMask(GROUND_LAYER)))
+        if (!feetCollider.IsTouchingLayers(LayerMask.GetMask(GROUND_LAYER, MOVING_PLATFORM_LAYER)))
         {
             playerAnimator.SetBool(RUNNING_ANIM, false);
         }

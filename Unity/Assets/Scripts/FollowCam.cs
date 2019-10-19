@@ -6,7 +6,7 @@ public class FollowCam : MonoBehaviour
 {
     Player player;
 
-    private float smoothTime = 1f;
+    [SerializeField] float smoothTime = 1f;
 
     // Start is called before the first frame update
     void Start()
