@@ -100108,6 +100108,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rate: 0.4
+  movingUp: 1
 --- !u!1001 &3724083191469342643
 PrefabInstance:
   m_ObjectHideFlags: 0
