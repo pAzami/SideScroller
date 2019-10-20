@@ -5,6 +5,9 @@ using UnityEngine;
 public class FollowCam : MonoBehaviour
 {
     [SerializeField] Transform target;
+    [SerializeField] float smoothTime = 1f;
+
+    [Header("Camera Boundaries"), Tooltip("These values will need changing when level boundary or camera size changes")]
     [SerializeField] float maxX = 6.6f;
     [SerializeField] float minX = -46.53f;
     [SerializeField] float maxY = 29.83f;
@@ -14,13 +17,13 @@ public class FollowCam : MonoBehaviour
 
     private void Update()
     {
-        // target position
         Vector3 targetPosition = target.position;
 
         targetPosition.x = Mathf.Clamp(target.position.x, minX, maxX);
         targetPosition.y = Mathf.Clamp(target.position.y, minY, maxY);
         targetPosition.z = transform.position.z;
 
-        transform.position = targetPosition;
+        Vector3 smoothPos = Vector3.Lerp(transform.position, targetPosition, smoothTime * Time.deltaTime);
+        transform.position = smoothPos;
     }
 }
