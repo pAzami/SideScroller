@@ -13,12 +13,20 @@ public class LevelExit : MonoBehaviour
     {
         if (!levelExitTriggered)
         {
-            levelExitTriggered = true;
-            GetComponent<SpriteRenderer>().color = Color.green;
-            AudioSource.PlayClipAtPoint(exitSFX, Camera.main.transform.position);
-            FindObjectOfType<ScenePersist>().destroyAllCollectibles();
-            FindObjectOfType<LevelLoader>().LoadNextLevel(exitDelay);
+            StartCoroutine(PrepareLevelExit());
         }
+    }
+
+    private IEnumerator PrepareLevelExit()
+    {
+        levelExitTriggered = true;
+        GetComponent<SpriteRenderer>().color = Color.green;
+        AudioSource.PlayClipAtPoint(exitSFX, Camera.main.transform.position);
+
+        yield return new WaitForSecondsRealtime(exitDelay);
+
+        FindObjectOfType<ScenePersist>().destroyAllCollectibles();
+        FindObjectOfType<LevelLoader>().LoadNextLevel();
     }
 
 }
