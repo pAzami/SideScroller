@@ -4,21 +4,23 @@ using UnityEngine;
 
 public class FollowCam : MonoBehaviour
 {
-    Player player;
+    [SerializeField] Transform target;
+    [SerializeField] float maxX = 6.6f;
+    [SerializeField] float minX = -46.53f;
+    [SerializeField] float maxY = 29.83f;
+    [SerializeField] float minY = -42.82f;
 
-    [SerializeField] float smoothTime = 1f;
+    Vector3 velocity = Vector3.zero;
 
-    // Start is called before the first frame update
-    void Start()
+    private void Update()
     {
-        player = FindObjectOfType<Player>();
-    }
+        // target position
+        Vector3 targetPosition = target.position;
 
-    // Update is called once per frame
-    void Update()
-    {
-        Vector3 targetCamPos = new Vector3(player.transform.position.x, player.transform.position.y, transform.position.z);
-        Vector3 smoothPos = Vector3.Lerp(transform.position, targetCamPos, smoothTime * Time.deltaTime);
-        transform.position = smoothPos;
+        targetPosition.x = Mathf.Clamp(target.position.x, minX, maxX);
+        targetPosition.y = Mathf.Clamp(target.position.y, minY, maxY);
+        targetPosition.z = transform.position.z;
+
+        transform.position = targetPosition;
     }
 }
