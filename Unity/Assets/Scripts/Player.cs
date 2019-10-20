@@ -7,6 +7,8 @@ public class Player : MonoBehaviour
     [SerializeField] float moveSpeed = 5f;
     [SerializeField] float jumpSpeed = 14f;
     [SerializeField] float climbSpeed = 5f;
+    [SerializeField] AudioClip deathSFX;
+    [SerializeField] AudioClip jumpSFX;
 
     Rigidbody2D playerRigidBody;
     Animator playerAnimator;
@@ -33,6 +35,7 @@ public class Player : MonoBehaviour
     private const string JUMP_INPUT = "Jump";
 
     private bool isAlive = true;
+    private Vector3 mainCameraPos;
 
     // Start is called before the first frame update
     void Start()
@@ -50,6 +53,8 @@ public class Player : MonoBehaviour
     {
         if (!isAlive) { return; }
 
+        mainCameraPos = Camera.main.transform.position;
+
         Run();
         FlipSprite();
         ClimbLadder();
@@ -63,6 +68,7 @@ public class Player : MonoBehaviour
         {
             isAlive = false;
             playerAnimator.SetTrigger(DYING_ANIM);
+            AudioSource.PlayClipAtPoint(deathSFX, mainCameraPos);
             playerRigidBody.velocity = Vector2.zero;
             GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, 0.5f);
             Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer(PLAYER_LAYER), LayerMask.NameToLayer(ENEMY_LAYER), true);
@@ -93,6 +99,7 @@ public class Player : MonoBehaviour
         if (Input.GetButtonDown(JUMP_INPUT))
         {
             playerAnimator.SetTrigger(JUMP_ANIM);
+            AudioSource.PlayClipAtPoint(jumpSFX, mainCameraPos);
             Vector2 jumpVelocity = new Vector2(0f, jumpSpeed);
             playerRigidBody.velocity += jumpVelocity;
         }

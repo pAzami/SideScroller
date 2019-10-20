@@ -120,4 +120,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 856848b2f97a5934487cc49a19889737, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  loadDelay: 2
+  exitDelay: 2
+  exitSFX: {fileID: 8300000, guid: 5fced7501c58dad4784b1975f78d656c, type: 3}

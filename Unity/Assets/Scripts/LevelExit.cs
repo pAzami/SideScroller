@@ -5,6 +5,7 @@ using UnityEngine;
 public class LevelExit : MonoBehaviour
 {
     [SerializeField] float exitDelay = 2f;
+    [SerializeField] AudioClip exitSFX;
 
     private bool levelExitTriggered = false;
 
@@ -14,6 +15,7 @@ public class LevelExit : MonoBehaviour
         {
             levelExitTriggered = true;
             GetComponent<SpriteRenderer>().color = Color.green;
+            AudioSource.PlayClipAtPoint(exitSFX, Camera.main.transform.position);
             FindObjectOfType<ScenePersist>().destroyAllCollectibles();
             FindObjectOfType<LevelLoader>().LoadNextLevel(exitDelay);
         }
