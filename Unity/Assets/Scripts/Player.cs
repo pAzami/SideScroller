@@ -10,6 +10,9 @@ public class Player : MonoBehaviour
     [SerializeField] AudioClip deathSFX;
     [SerializeField] AudioClip jumpSFX;
 
+    [Range(0f, 1f)]
+    [SerializeField] float sfxVolume = 1f;
+
     Rigidbody2D playerRigidBody;
     Animator playerAnimator;
     CapsuleCollider2D bodyCollider;
@@ -68,7 +71,7 @@ public class Player : MonoBehaviour
         {
             isAlive = false;
             playerAnimator.SetTrigger(DYING_ANIM);
-            AudioSource.PlayClipAtPoint(deathSFX, mainCameraPos);
+            AudioSource.PlayClipAtPoint(deathSFX, mainCameraPos, sfxVolume);
             playerRigidBody.velocity = Vector2.zero;
             GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, 0.5f);
             Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer(PLAYER_LAYER), LayerMask.NameToLayer(ENEMY_LAYER), true);
@@ -99,7 +102,7 @@ public class Player : MonoBehaviour
         if (Input.GetButtonDown(JUMP_INPUT))
         {
             playerAnimator.SetTrigger(JUMP_ANIM);
-            AudioSource.PlayClipAtPoint(jumpSFX, mainCameraPos);
+            AudioSource.PlayClipAtPoint(jumpSFX, mainCameraPos, sfxVolume);
             Vector2 jumpVelocity = new Vector2(0f, jumpSpeed);
             playerRigidBody.velocity += jumpVelocity;
         }

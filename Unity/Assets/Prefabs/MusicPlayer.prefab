@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1297888761221381803}
   - component: {fileID: 1297888761221381802}
+  - component: {fileID: 575004460}
   m_Layer: 0
   m_Name: MusicPlayer
   m_TagString: Untagged
@@ -43,7 +44,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 3320cb6077c86ee41a127b44fd2450b3, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.4
+  m_Volume: 0.2
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -127,3 +128,15 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &575004460
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1297888761221381805}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f3a282a04bc5714e98cf0d888839ddb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

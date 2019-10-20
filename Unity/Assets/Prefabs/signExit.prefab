@@ -121,4 +121,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   exitDelay: 2
-  exitSFX: {fileID: 8300000, guid: 5fced7501c58dad4784b1975f78d656c, type: 3}
+  exitSFX: {fileID: 8300000, guid: 33cd8fa6c3b6d6b4880d1d79f16d9305, type: 3}
+  sfxVolume: 1

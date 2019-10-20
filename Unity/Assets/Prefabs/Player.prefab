@@ -156,8 +156,9 @@ MonoBehaviour:
   moveSpeed: 5
   jumpSpeed: 14
   climbSpeed: 5
-  deathSFX: {fileID: 8300000, guid: a457ec3cd75114c4d8a8a06fed59471f, type: 3}
-  jumpSFX: {fileID: 8300000, guid: d79cb38b4756e8b41825af437d7292d2, type: 3}
+  deathSFX: {fileID: 8300000, guid: d35a9ee9aa59a794a9bfb98d02136804, type: 3}
+  jumpSFX: {fileID: 8300000, guid: 6c0db60ee59e3254ca5b3b6de6dc9393, type: 3}
+  sfxVolume: 1
 --- !u!61 &1685234737
 BoxCollider2D:
   m_ObjectHideFlags: 0
