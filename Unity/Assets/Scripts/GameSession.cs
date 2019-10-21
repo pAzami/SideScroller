@@ -41,6 +41,7 @@ public class GameSession : MonoBehaviour
         }
         else
         {
+            ReduceLivesAndUpdateUI();
             FindObjectOfType<LevelLoader>().LoadGameOverMenu(loadDelay);
         }
     }
