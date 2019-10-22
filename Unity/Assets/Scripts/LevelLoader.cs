@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -6,9 +7,6 @@ using UnityEngine.SceneManagement;
 public class LevelLoader : MonoBehaviour
 {
     private int curSceneIndex;
-    private const int MAIN_MENU_SCENE_INDEX = 0;
-    private const int GAME_COMPLETE_SCENE_INDEX = 4;
-    private const int GAME_OVER_SCENE_INDEX = 5;
 
     private void Start()
     {
@@ -18,10 +16,19 @@ public class LevelLoader : MonoBehaviour
     private IEnumerator ChangeScene(int sceneBuildIndex, float sceneLoadDelay)
     {
         yield return new WaitForSecondsRealtime(sceneLoadDelay);
-        
-        if (sceneBuildIndex == MAIN_MENU_SCENE_INDEX ||
-            sceneBuildIndex == GAME_COMPLETE_SCENE_INDEX ||
-            sceneBuildIndex == GAME_OVER_SCENE_INDEX)
+        SceneManager.LoadScene(sceneBuildIndex);
+    }
+
+    private void Update()
+    {
+        HideMouseInGameLevels();
+    }
+
+    private void HideMouseInGameLevels()
+    {
+        if (curSceneIndex == SceneIndices.MAIN_MENU_INDEX ||
+            curSceneIndex == SceneIndices.GAME_COMPLETE_MENU_INDEX ||
+            curSceneIndex == SceneIndices.GAME_OVER_MENU_INDEX)
         {
             Cursor.visible = true;
         }
@@ -29,8 +36,6 @@ public class LevelLoader : MonoBehaviour
         {
             Cursor.visible = false;
         }
-
-        SceneManager.LoadScene(sceneBuildIndex);
     }
 
     public void LoadMainMenu(float sceneLoadDelay = 0)
@@ -55,7 +60,7 @@ public class LevelLoader : MonoBehaviour
 
     public void LoadGameOverMenu(float sceneLoadDelay = 0)
     {
-        StartCoroutine(ChangeScene(GAME_OVER_SCENE_INDEX, sceneLoadDelay));
+        StartCoroutine(ChangeScene(SceneIndices.GAME_OVER_MENU_INDEX, sceneLoadDelay));
     }
 
     public void QuitToMainMenu()

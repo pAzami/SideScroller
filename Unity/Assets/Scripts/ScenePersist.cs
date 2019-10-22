@@ -36,7 +36,7 @@ public class ScenePersist : MonoBehaviour
         }
     }
 
-    public void destroyAllCollectibles()
+    public void destroyPersistantItems()
     {
         Destroy(gameObject);
     }

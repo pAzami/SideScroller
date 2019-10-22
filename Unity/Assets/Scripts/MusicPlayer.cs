@@ -16,13 +16,6 @@ public class MusicPlayer : MonoBehaviour
     Scene startScene;
     AudioSource audioSource;
 
-    private const int MAIN_MENU = 0;
-    private const int LEVEL_1 = 1;
-    private const int LEVEL_2 = 2;
-    private const int LEVEL_3 = 3;
-    private const int GAME_COMPLETE_MENU = 4;
-    private const int GAME_OVER_MENU = 5;
-
     private void Start()
     {
         audioSource = GetComponent<AudioSource>();
@@ -30,22 +23,22 @@ public class MusicPlayer : MonoBehaviour
 
         switch (startScene.buildIndex)
         {
-            case MAIN_MENU:
+            case SceneIndices.MAIN_MENU_INDEX:
                 audioSource.clip = MainMenuMusic;
                 break;
-            case GAME_OVER_MENU:
+            case SceneIndices.GAME_OVER_MENU_INDEX:
                 audioSource.clip = GameOverMenuMusic;
                 break;
-            case GAME_COMPLETE_MENU:
+            case SceneIndices.GAME_COMPLETE_MENU_INDEX:
                 audioSource.clip = GameCompleteMenuMusic;
                 break;
-            case LEVEL_1:
+            case SceneIndices.LEVEL_1_INDEX:
                 audioSource.clip = level1Music;
                 break;
-            case LEVEL_2:
+            case SceneIndices.LEVEL_2_INDEX:
                 audioSource.clip = level2Music;
                 break;
-            case LEVEL_3:
+            case SceneIndices.LEVEL_3_INDEX:
                 audioSource.clip = level3Music;
                 break;
             default:

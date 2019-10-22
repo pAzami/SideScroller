@@ -26,7 +26,7 @@ public class LevelExit : MonoBehaviour
         GetComponent<SpriteRenderer>().color = Color.green;
         AudioSource.PlayClipAtPoint(exitSFX, Camera.main.transform.position, sfxVolume);
 
-        FindObjectOfType<ScenePersist>().destroyAllCollectibles();
+        FindObjectOfType<ScenePersist>().destroyPersistantItems();
         FindObjectOfType<LevelLoader>().LoadNextLevel(exitDelay);
     }
 
