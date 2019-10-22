@@ -6,12 +6,12 @@ using UnityEngine.SceneManagement;
 [RequireComponent(typeof(AudioSource))]
 public class MusicPlayer : MonoBehaviour
 {
-    [SerializeField] AudioClip MainMenuMusic;
-    [SerializeField] AudioClip GameOverMenuMusic;
-    [SerializeField] AudioClip GameCompleteMenuMusic;
+    [SerializeField] AudioClip mainMenuMusic;
+    [SerializeField] AudioClip gameOverMenuMusic;
     [SerializeField] AudioClip level1Music;
     [SerializeField] AudioClip level2Music;
     [SerializeField] AudioClip level3Music;
+    [SerializeField] AudioClip victoryClip;
 
     Scene startScene;
     AudioSource audioSource;
@@ -24,13 +24,10 @@ public class MusicPlayer : MonoBehaviour
         switch (startScene.buildIndex)
         {
             case SceneIndices.MAIN_MENU_INDEX:
-                audioSource.clip = MainMenuMusic;
+                audioSource.clip = mainMenuMusic;
                 break;
             case SceneIndices.GAME_OVER_MENU_INDEX:
-                audioSource.clip = GameOverMenuMusic;
-                break;
-            case SceneIndices.GAME_COMPLETE_MENU_INDEX:
-                audioSource.clip = GameCompleteMenuMusic;
+                audioSource.clip = gameOverMenuMusic;
                 break;
             case SceneIndices.LEVEL_1_INDEX:
                 audioSource.clip = level1Music;
@@ -46,6 +43,13 @@ public class MusicPlayer : MonoBehaviour
                 break;
         }
 
-        audioSource.Play();
+        if (startScene.buildIndex == SceneIndices.GAME_COMPLETE_MENU_INDEX)
+        {
+            audioSource.PlayOneShot(victoryClip);
+        }
+        else
+        {
+            audioSource.Play();
+        }
     }
 }

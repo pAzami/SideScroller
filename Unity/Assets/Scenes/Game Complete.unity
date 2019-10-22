@@ -470,6 +470,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 575004460, guid: a4c4fda52e593314bb989e4057cab01b, type: 3}
+      propertyPath: victoryClipDelay
+      value: 0.6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a4c4fda52e593314bb989e4057cab01b, type: 3}
 --- !u!1 &493269748
