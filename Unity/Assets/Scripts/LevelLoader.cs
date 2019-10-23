@@ -28,7 +28,8 @@ public class LevelLoader : MonoBehaviour
     {
         if (curSceneIndex == SceneIndices.MAIN_MENU_INDEX ||
             curSceneIndex == SceneIndices.GAME_COMPLETE_MENU_INDEX ||
-            curSceneIndex == SceneIndices.GAME_OVER_MENU_INDEX)
+            curSceneIndex == SceneIndices.GAME_OVER_MENU_INDEX ||
+            curSceneIndex == SceneIndices.CREDITS)
         {
             Cursor.visible = true;
         }
@@ -56,6 +57,11 @@ public class LevelLoader : MonoBehaviour
     public void ReloadCurrentLevel(float sceneLoadDelay = 0)
     {
         StartCoroutine(ChangeScene(curSceneIndex, sceneLoadDelay));
+    }
+
+    public void LoadCredits(float sceneLoadDelay = 0)
+    {
+        StartCoroutine(ChangeScene(SceneIndices.CREDITS, sceneLoadDelay));
     }
 
     public void LoadGameOverMenu(float sceneLoadDelay = 0)

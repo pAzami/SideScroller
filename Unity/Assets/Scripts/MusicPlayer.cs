@@ -38,6 +38,9 @@ public class MusicPlayer : MonoBehaviour
             case SceneIndices.LEVEL_3_INDEX:
                 audioSource.clip = level3Music;
                 break;
+            case SceneIndices.CREDITS:
+                audioSource.clip = gameOverMenuMusic;
+                break;
             default:
                 Debug.Log("No music clip available.");
                 break;

@@ -853,7 +853,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Hint! There is more than one path to Victory.
+  m_Text: 'Hint: There is more than one path to Victory.'
 --- !u!222 &585907570
 CanvasRenderer:
   m_ObjectHideFlags: 0

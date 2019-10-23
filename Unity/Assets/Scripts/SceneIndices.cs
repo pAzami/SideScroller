@@ -10,4 +10,5 @@ public class SceneIndices : MonoBehaviour
     public const int LEVEL_3_INDEX = 3;
     public const int GAME_COMPLETE_MENU_INDEX = 4;
     public const int GAME_OVER_MENU_INDEX = 5;
+    public const int CREDITS = 6;
 }
