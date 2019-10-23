@@ -6,7 +6,7 @@ The project is currently using Unity version: 2019.2.9f1
 
 # Releases
 
-All release builds will be uploaded to this repository: //github.com/pAzami/SwiftToesTheGame
+All release builds will be uploaded to this repository: https://github.com/pAzami/SwiftToesTheGame/
 
 ## Play Now
 - WebGL v1-2019.10.23: https://pazami.github.io/SwiftToesTheGame/
