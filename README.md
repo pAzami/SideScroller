@@ -2,6 +2,13 @@
 
 This is a personal project that was built with the Unity engine.
 
+# Releases
+
+## Playable
+- [WebGL v1-2019.10.23:] (https://pazami.github.io/SwiftToesTheGame/)
+
+All release builds will be uploaded to this repository: ://github.com/pAzami/SwiftToesTheGame
+
 Unity version: 2019.2.9f1
 
 # Asset Sources
