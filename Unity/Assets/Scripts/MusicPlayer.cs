@@ -42,7 +42,6 @@ public class MusicPlayer : MonoBehaviour
                 audioSource.clip = gameOverMenuMusic;
                 break;
             default:
-                Debug.Log("No music clip available.");
                 break;
         }
 
