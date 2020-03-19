@@ -9,7 +9,7 @@ The project is currently using Unity version: 2019.2.9f1
 All release builds will be uploaded to this repository: https://github.com/pAzami/SwiftToesTheGame/
 
 ## Play Now
-https://pazami.github.io/SwiftToesTheGame/
+https://pazami01.github.io/SwiftToesTheGame/
 
 
 # Asset Sources
