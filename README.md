@@ -1,6 +1,8 @@
 # About this project
 
-This is a personal project that was built with the Unity engine.
+This is a personal project that was built using C# and the Unity engine.
+
+It is a 2D platformer game where the main goal is to reach the end of each level before getting caught by the time mechanic, which is represented visually in different ways. The secondary goal is to pick up gold coins to get a higher score.
 
 The project is currently using Unity version: 2019.2.9f1
 
